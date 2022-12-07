@@ -1,6 +1,5 @@
-fn main() {
+pub fn main() {
     const X: usize = 9;
-
     if let [a, b] = include_str!("data.txt")
         .split("\n\n")
         .collect::<Vec<_>>()
@@ -20,6 +19,7 @@ fn main() {
             .into_iter()
             .map(|n| n.into_iter())
             .collect();
+            
         let mut inverted: Vec<Vec<char>> = (0..X)
             .map(|_| {
                 iters
@@ -34,8 +34,24 @@ fn main() {
                     .collect::<Vec<char>>()
             })
             .collect();
-        println!("{:#?}", inverted);
 
+        // Part one answer
+        // b.lines()
+        //     .map(|l| l.split(" ").skip(1).step_by(2).collect::<Vec<_>>())
+        //     .into_iter()
+        //     .for_each(|l| {
+        //         let (n, f, t) = (
+        //             l[0].parse::<i32>().unwrap(),
+        //             l[1].parse::<usize>().unwrap(),
+        //             l[2].parse::<usize>().unwrap(),
+        //         );
+        //         (0..n).for_each(|_| {
+        //             let temp = inverted[f - 1].pop().unwrap();
+        //             inverted[t - 1].push(temp);
+        //         });
+        //     });
+
+        // Part two answer
         b.lines()
             .map(|l| l.split(" ").skip(1).step_by(2).collect::<Vec<_>>())
             .into_iter()
@@ -45,13 +61,16 @@ fn main() {
                     l[1].parse::<usize>().unwrap(),
                     l[2].parse::<usize>().unwrap(),
                 );
-                (0..n).for_each(|_| {
-                    let temp = inverted[f - 1].pop().unwrap();
-                    inverted[t - 1].push(temp);
-                });
+
+                let len: i32 = inverted[f - 1].len() as i32;
+                let copy_tmp  = inverted[f - 1][((len - n) as usize)..(len as usize)]
+                    .iter()
+                    .cloned()
+                    .collect::<Vec<char>>();
+                inverted[f - 1].truncate((len - n) as usize); // Took me hours to find these two methods :)
+                inverted[t - 1].extend(copy_tmp.iter());
             });
 
-        println!("{:?}", inverted);
         println!(
             "{:?}",
             inverted

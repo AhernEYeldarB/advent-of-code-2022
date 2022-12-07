@@ -1,4 +1,4 @@
-fn main() {
+pub fn main() {
     let (max, _) = include_str!("data.txt").lines().fold((0, 0), {
         |(max, curr_total), curr| match curr.parse::<i32>().unwrap_or_default() > 0 {
             true => (max, curr_total + curr.parse::<i32>().unwrap()),

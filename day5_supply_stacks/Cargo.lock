@@ -3,5 +3,5 @@
 version = 3
 
 [[package]]
-name = "camp_cleanup-day4"
+name = "day5_supply_stacks"
 version = "0.1.0"

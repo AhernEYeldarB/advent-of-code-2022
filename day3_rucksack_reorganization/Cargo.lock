@@ -3,5 +3,5 @@
 version = 3
 
 [[package]]
-name = "rock_paper_scissors-day2"
+name = "day3_rucksack_reorganization"
 version = "0.1.0"

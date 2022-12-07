@@ -3,5 +3,5 @@
 version = 3
 
 [[package]]
-name = "calorie_counting-day1"
+name = "day4_camp_cleanup"
 version = "0.1.0"

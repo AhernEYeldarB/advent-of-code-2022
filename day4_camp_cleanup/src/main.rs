@@ -1,6 +1,6 @@
 use std::cmp::{max, min};
 
-fn main() {
+pub fn main() {
     println!(
         "part_one: {:?}",
         include_str!("data.txt")
